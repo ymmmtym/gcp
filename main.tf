@@ -30,7 +30,7 @@ data "google_compute_zones" "available" {
 }
 
 data "google_compute_image" "ubuntu" {
-  family  = "ubuntu-minimal-2604-lts-amd64"
+  name    = "ubuntu-minimal-2604-resolute-amd64-v20260723"
   project = "ubuntu-os-cloud"
 }
 
