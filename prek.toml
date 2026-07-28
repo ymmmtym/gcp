@@ -1,0 +1,14 @@
+# Configuration file for `prek`, a git hook framework written in Rust.
+# See https://prek.j178.dev for more information.
+#:schema https://www.schemastore.org/prek.json
+
+[[repos]]
+repo = "https://github.com/antonbabenko/pre-commit-terraform"
+rev = "v1.77.1"
+hooks = [
+  { id = "terraform_fmt" },
+  { id = "terraform_providers_lock" },
+  { id = "terraform_tflint" },
+  { id = "terraform_tfsec" },
+  { id = "terraform_validate" }
+]
