@@ -19,7 +19,7 @@ Uses a Terraform Cloud remote workspace (`gcp`).
 3. Open a PR → Terraform Cloud runs `terraform plan` (dry-run)
 4. Merge → Terraform Cloud runs `terraform apply` (deploy)
 
-Local validation via pre-commit hooks (`pre-commit run --all-files`):
+Local validation via prek hooks (`prek run --all-files`):
 - `terraform_fmt` — auto-format `.tf` files
 - `terraform_validate` — syntax/config validation
 - `terraform_tflint` — linting
