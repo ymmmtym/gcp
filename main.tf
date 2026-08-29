@@ -48,8 +48,8 @@ resource "google_compute_address" "default" {
   address_type = "EXTERNAL"
 }
 
-resource "google_compute_instance" "bastion-01" {
-  name         = "bastion-01"
+resource "google_compute_instance" "us-bastion-01" {
+  name         = "us-bastion-01"
   machine_type = "e2-micro"
   zone         = data.google_compute_zones.available.names[0]
 
