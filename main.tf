@@ -18,7 +18,10 @@ module "terraform_cloud" {
   projects            = [{ "project" : "gcp", "workspace" : "gcp" }]
   attribute_condition = "assertion.sub.startsWith('organization:yumenomatayume')"
 
-  attach_extra_roles = ["roles/secretmanager.admin"]
+  attach_extra_roles = [
+    "roles/secretmanager.admin",
+    "roles/run.admin",
+  ]
 }
 
 
@@ -124,4 +127,3 @@ resource "google_storage_bucket" "yumenomatayume" {
     }
   }
 }
-
