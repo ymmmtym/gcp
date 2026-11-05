@@ -8,7 +8,7 @@ Uses a Terraform Cloud remote workspace (`gcp`).
 
 ## Key Versions
 
-- Terraform: `~> 1.15.0`
+- Terraform: `~> 1.17.0`
 - Provider: `hashicorp/google ~> 7.0` (locked at 7.40.0)
 - gcloud CLI: managed via `mise.toml`
 
