@@ -99,5 +99,27 @@ resource "google_storage_bucket" "yumenomatayume" {
       type = "Delete"
     }
   }
+
+  # Discogs バックアップ（discogs-backup/）だけを対象にした保持期間。
+  # versioning 有効のため、削除後の非現行バージョンも別ルールで回収する。
+  lifecycle_rule {
+    condition {
+      matches_prefix = ["discogs-backup/"]
+      age            = 90
+    }
+    action {
+      type = "Delete"
+    }
+  }
+
+  lifecycle_rule {
+    condition {
+      matches_prefix             = ["discogs-backup/"]
+      days_since_noncurrent_time = 7
+    }
+    action {
+      type = "Delete"
+    }
+  }
 }
 
