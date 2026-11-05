@@ -17,6 +17,8 @@ module "terraform_cloud" {
   organisation        = "yumenomatayume"
   projects            = [{ "project" : "gcp", "workspace" : "gcp" }]
   attribute_condition = "assertion.sub.startsWith('organization:yumenomatayume')"
+
+  attach_extra_roles = ["roles/secretmanager.admin"]
 }
 
 
