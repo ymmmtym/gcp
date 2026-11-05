@@ -64,6 +64,12 @@ resource "google_storage_bucket_iam_member" "discogs_backup_runtime" {
   member = "serviceAccount:${google_service_account.discogs_backup_runtime.email}"
 }
 
+resource "google_storage_bucket_iam_member" "discogs_backup_runtime_bucket_viewer" {
+  bucket = local.discogs_backup_bucket
+  role   = "roles/storage.bucketViewer"
+  member = "serviceAccount:${google_service_account.discogs_backup_runtime.email}"
+}
+
 resource "google_secret_manager_secret_iam_member" "discogs_backup_runtime_token" {
   secret_id = google_secret_manager_secret.discogs_backup_token.secret_id
   role      = "roles/secretmanager.secretAccessor"
