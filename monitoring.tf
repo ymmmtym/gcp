@@ -92,3 +92,28 @@ resource "google_monitoring_alert_policy" "bastion_cpu" {
 
   notification_channels = [data.google_monitoring_notification_channel.slack.name]
 }
+
+#
+# Cloud Run（discogs-backup）はスケール・トゥ・ゼロの日次バッチなので、
+# 死活監視ではなく「実行が失敗したか」をログで監視する。
+# 認証必須のサービスに uptime check を当てると 403 で常時発報するため行わない。
+resource "google_monitoring_alert_policy" "discogs_backup_errors" {
+  display_name = "${google_cloud_run_v2_service.discogs_backup.name} errors"
+  combiner     = "OR"
+
+  conditions {
+    display_name = "error or 5xx log"
+
+    condition_matched_log {
+      filter = "resource.type=\"cloud_run_revision\" AND resource.labels.service_name=\"${google_cloud_run_v2_service.discogs_backup.name}\" AND (severity>=ERROR OR httpRequest.status>=500)"
+    }
+  }
+
+  alert_strategy {
+    notification_rate_limit {
+      period = "300s"
+    }
+  }
+
+  notification_channels = [data.google_monitoring_notification_channel.slack.name]
+}
