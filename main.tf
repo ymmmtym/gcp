@@ -19,6 +19,7 @@ module "terraform_cloud" {
   attribute_condition = "assertion.sub.startsWith('organization:yumenomatayume')"
 
   attach_extra_roles = [
+    "roles/monitoring.admin",
     "roles/secretmanager.admin",
     "roles/run.admin",
   ]
