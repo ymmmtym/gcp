@@ -10,7 +10,7 @@ provider "google-beta" {
 
 module "terraform_cloud" {
   source  = "saidsef/terraform-cloud-oidc/gcp"
-  version = "~> 1.2.0"
+  version = "~> 1.3.0"
 
   project_id          = var.project_id
   pool_id             = "terraform-cloud"
